@@ -79,7 +79,7 @@ final class AuthController extends AbstractController
         $user = new User();
         $user->setEmail($data['email']);
         $user->setUsername($data['name']);
-        $user->setRoles([]);
+        $user->setRoles(["ROLE_USER"]);
         $user->setCreatedAt(new \DateTimeImmutable());
 
         // Hash the password
@@ -95,6 +95,7 @@ final class AuthController extends AbstractController
                 'id' => $user->getId(),
                 'email' => $user->getEmail(),
                 'username' => $user->getUsername(),
+                'roles' => $user->getRoles(),
             ],
         ], Response::HTTP_CREATED);
     }
