@@ -1,5 +1,7 @@
 twig:
     file_name_pattern: '*.twig'
+    globals:
+        vite_mode: '%kernel.environment%'
 
 when@test:
     twig:
