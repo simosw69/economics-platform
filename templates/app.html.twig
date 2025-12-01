@@ -6,23 +6,18 @@
     <title>EconLearn</title>
     
     {% if app.environment == 'dev' %}
-        {# Development #}
+        {# Development: Load from Vite dev server #}
         <script type="module" src="http://localhost:5173/@vite/client"></script>
         <script type="module" src="http://localhost:5173/src/main.jsx"></script>
     {% else %}
-        {# Production: Read from manifest.json #}
-        {% set manifest = source('build/manifest.json')|json_decode %}
-        {% if manifest['src/main.jsx'] is defined %}
-            {% if manifest['src/main.jsx'].css is defined %}
-                {% for css in manifest['src/main.jsx'].css %}
-                    <link rel="stylesheet" href="/build/{{ css }}">
-                {% endfor %}
-            {% endif %}
-            <script type="module" src="/build/{{ manifest['src/main.jsx'].file }}"></script>
-        {% endif %}
+        {# Production: Load built assets #}
+        {# Note: After building, check public/build/manifest.json for exact filenames #}
+        <script type="module" src="/build/assets/main.js"></script>
+        <link rel="stylesheet" href="/build/assets/main.css">
     {% endif %}
 </head>
 <body>
     <div id="app" data-page="{{ page|json_encode|e('html_attr') }}"></div>
+    <div id="modal-root"></div>
 </body>
 </html>
