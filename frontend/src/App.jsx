@@ -1,9 +1,10 @@
+import { createInertiaApp } from '@inertiajs/inertia-react';
+import { createRoot } from 'react-dom/client';
 import React from 'react';
 
-export default function App() {
-  return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold text-center">React + Tailwind + Vite pronto!</h1>
-    </div>
-  );
-}
+createInertiaApp({
+  resolve: name => require(`./Pages/${name}`).default,
+  setup({ el, App, props }) {
+    createRoot(el).render(<App {...props} />);
+  },
+});

@@ -14,7 +14,25 @@ final class HomeController extends AbstractController
     public function home(Request $request, Inertia $inertia): Response
     {
         return $inertia->render('Home', [
-            'message' => 'Hello from Symfony!'
+            'title' => 'Welcome to EconLearn',
+            'subtitle' => 'Master economics through interactive lessons, real-world examples, and hands-on practice. Start your journey to financial literacy today.',
+            'features' => [
+                [
+                    'icon' => '📊',
+                    'title' => 'Interactive Charts',
+                    'description' => 'Visualize economic concepts with dynamic, interactive data visualizations.',
+                ],
+                [
+                    'icon' => '🎯',
+                    'title' => 'Practical Exercises',
+                    'description' => 'Apply what you learn with real-world scenarios and case studies.',
+                ],
+                [
+                    'icon' => '🏆',
+                    'title' => 'Track Progress',
+                    'description' => 'Monitor your learning journey and earn achievements as you advance.',
+                ],
+            ],
         ]);
     }
 
@@ -22,7 +40,7 @@ final class HomeController extends AbstractController
     public function test(Request $request, Inertia $inertia): Response
     {
         return $inertia->render('Test', [
-            'message' => 'Hello from Symfony!'
+            'message' => 'Hello from Symfony test!'
         ]);
     }
 }

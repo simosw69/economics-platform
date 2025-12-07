@@ -1,19 +1,26 @@
+{# templates/app.html.twig #}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EconLearn</title>
-    
+
     {% if app.environment == 'dev' %}
-        {# Development: Load from Vite dev server #}
+        {# Carica i file direttamente dal dev server Vite #}
         <script type="module" src="http://localhost:5173/@vite/client"></script>
+        <script type="module">
+            import RefreshRuntime from 'http://localhost:5173/@react-refresh';
+            RefreshRuntime.injectIntoGlobalHook(window);
+            window.$RefreshReg$ = () => {};
+            window.$RefreshSig$ = () => (type) => type;
+            window.__vite_plugin_react_preamble_installed__ = true;
+        </script>
         <script type="module" src="http://localhost:5173/src/main.jsx"></script>
     {% else %}
-        {# Production: Load built assets #}
-        {# Note: After building, check public/build/manifest.json for exact filenames #}
-        <script type="module" src="/build/assets/main.js"></script>
+        {# Carica la build di produzione #}
         <link rel="stylesheet" href="/build/assets/main.css">
+        <script type="module" src="/build/assets/main.js"></script>
     {% endif %}
 </head>
 <body>

@@ -10,7 +10,6 @@
         "doctrine/doctrine-bundle": "^3.1",
         "doctrine/doctrine-migrations-bundle": "^3.7",
         "doctrine/orm": "^3.5",
-        "inertiajs/inertia-laravel": "^2.0",
         "nelmio/cors-bundle": "^2.6",
         "pentatrion/vite-bundle": "^8.2",
         "phpdocumentor/reflection-docblock": "^5.6",
