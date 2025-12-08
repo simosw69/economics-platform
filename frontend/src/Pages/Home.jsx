@@ -6,11 +6,12 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
+import Navbar from "@/components/Navbar";
 
-export default function Home({ title, subtitle, features }) {
+export default function Home({ title, subtitle, features, user }) {
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-            {/* Hero Section */}
+            <Navbar user={user} />
             <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-6 py-16">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 tracking-tight">
                     {title}
