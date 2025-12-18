@@ -29,36 +29,40 @@ export default function Navbar({ user }) {
                         href="/courses"
                         className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                     >
-                        Courses
+                        Corsi
+                    </a>
+                    <a
+                        href="/articles"
+                        className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                        Lezioni
                     </a>
                     <a
                         href="/about"
                         className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                     >
-                        About
+                        Chi Siamo
                     </a>
                 </div>
 
-                {/* Auth Buttons */}
+                {/* Auth Buttons / Actions */}
                 <div className="hidden md:flex items-center gap-3">
+                    <Button variant="ghost" asChild>
+                        <a href="/articles/create">Scrivi Lezione</a>
+                    </Button>
                     {user ? (
                         <>
                             <span className="text-sm font-medium text-muted-foreground">
-                                Hello, {user.username}
+                                Ciao, {user.username}
                             </span>
                             <Button variant="outline" asChild>
-                                <a href="/logout">Logout</a>
+                                <a href="/logout">Esci</a>
                             </Button>
                         </>
                     ) : (
-                        <>
-                            <Button variant="ghost" asChild>
-                                <a href="/login">Sign In</a>
-                            </Button>
-                            <Button asChild>
-                                <a href="/register">Get Started</a>
-                            </Button>
-                        </>
+                        <div className="text-sm font-medium text-muted-foreground">
+                            Modalità Ospite
+                        </div>
                     )}
                 </div>
 
@@ -108,41 +112,44 @@ export default function Navbar({ user }) {
                             href="/courses"
                             className="block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
                         >
-                            Courses
+                            Corsi
+                        </a>
+                        <a
+                            href="/articles"
+                            className="block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
+                        >
+                            Lezioni
                         </a>
                         <a
                             href="/about"
                             className="block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
                         >
-                            About
+                            Chi Siamo
                         </a>
                         <div className="pt-4 border-t border-border/40 flex flex-col gap-2">
+                            <a
+                                href="/articles/create"
+                                className="block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
+                            >
+                                Scrivi Lezione
+                            </a>
                             {user ? (
                                 <>
                                     <div className="text-sm font-medium text-muted-foreground py-2">
-                                        Hello, {user.username}
+                                        Ciao, {user.username}
                                     </div>
                                     <Button
                                         variant="outline"
                                         className="w-full"
                                         asChild
                                     >
-                                        <a href="/logout">Logout</a>
+                                        <a href="/logout">Esci</a>
                                     </Button>
                                 </>
                             ) : (
-                                <>
-                                    <Button
-                                        variant="ghost"
-                                        className="w-full"
-                                        asChild
-                                    >
-                                        <a href="/login">Sign In</a>
-                                    </Button>
-                                    <Button className="w-full" asChild>
-                                        <a href="/register">Get Started</a>
-                                    </Button>
-                                </>
+                                <div className="text-sm font-medium text-muted-foreground py-2 text-center">
+                                    Modalità Ospite
+                                </div>
                             )}
                         </div>
                     </div>

@@ -18,7 +18,8 @@ final class AuthController extends AbstractController
     #[Route('/login', name: 'app_login', methods: ['GET'])]
     public function loginPage(Inertia $inertia): Response
     {
-        return $inertia->render('Login', []);
+        return $this->redirectToRoute('app_home');
+        //return $inertia->render('Login', []);
     }
 
     #[Route('/api/login', name: 'api_login', methods: ['POST'])]
@@ -43,7 +44,8 @@ final class AuthController extends AbstractController
     #[Route('/register', name: 'app_register', methods: ['GET'])]
     public function registerPage(Inertia $inertia): Response
     {
-        return $inertia->render('Register', []);
+        return $this->redirectToRoute('app_home');
+        //return $inertia->render('Register', []);
     }
 
     #[Route('/api/register', name: 'api_register', methods: ['POST'])]
@@ -68,8 +70,10 @@ final class AuthController extends AbstractController
         }
 
         // Check if user already exists
-        $existingUser = $entityManager->getRepository(User::class)->findOneBy(['email' => $data['email']]);
-        if ($existingUser) {
+        $existingEmail = $entityManager->getRepository(User::class)->findOneBy(['email' => $data['email']]);
+        $existingUsername = $entityManager->getRepository(User::class)->findOneBy(['username' => $data['username']]);
+
+        if ($existingEmail || $existingUsername) {
             return $this->json([
                 'message' => 'User with this email already exists',
             ], Response::HTTP_CONFLICT);

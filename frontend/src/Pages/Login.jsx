@@ -13,6 +13,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 export default function Login() {
     const [email, setEmail] = useState("");
+    //const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");

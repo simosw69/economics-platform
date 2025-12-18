@@ -79,13 +79,13 @@ export default function Register() {
                         )}
 
                         <div className="space-y-2">
-                            <Label htmlFor="name">Full Name</Label>
+                            <Label htmlFor="name">Username</Label>
                             <Input
                                 id="name"
                                 type="text"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
-                                placeholder="John Doe"
+                                placeholder="@user"
                                 required
                                 disabled={isLoading}
                             />

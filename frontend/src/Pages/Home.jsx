@@ -1,288 +1,165 @@
+import Navbar from "../components/Navbar";
 import { Button } from "@/components/ui/button";
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
-import Navbar from "@/components/Navbar";
-import {
-    BarChart,
-    Target,
-    Trophy,
-    ArrowRight,
-    Star,
-    CheckCircle2,
-    Globe,
-    Shield,
-} from "lucide-react";
+import { Search, Book, TrendingUp, BarChart2, Globe } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
-// Helper to map backend icons/titles to Lucide icons
-const getIcon = (title) => {
-    switch (title) {
-        case "Interactive Charts":
-            return <BarChart className="w-10 h-10 text-primary" />;
-        case "Practical Exercises":
-            return <Target className="w-10 h-10 text-primary" />;
-        case "Track Progress":
-            return <Trophy className="w-10 h-10 text-primary" />;
-        default:
-            return <CheckCircle2 className="w-10 h-10 text-primary" />;
-    }
-};
-
-export default function Home({ title, subtitle, features, user }) {
+export default function Home({ user }) {
     return (
-        <div className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-primary/20">
+        <div className="min-h-screen bg-background text-foreground font-sans">
             <Navbar user={user} />
 
             {/* Hero Section */}
-            <section className="relative pt-20 pb-32 lg:pt-32 overflow-hidden">
-                <div className="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)] opacity-30"></div>
-                <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
-                    <div className="inline-flex items-center rounded-full border px-3 py-1 text-sm font-medium backdrop-blur-sm bg-background/50 mb-6 animate-fade-in-up">
-                        <span className="flex h-2 w-2 rounded-full bg-primary mr-2"></span>
-                        New Platform Launch 2.0
-                    </div>
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground mb-6 max-w-4xl mx-auto leading-tight">
-                        {title}
+            <section className="bg-slate-900 text-white py-20 md:py-32 relative overflow-hidden">
+                <div className="container mx-auto px-4 text-center relative z-10">
+                    <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+                        Impara l'Economia
                     </h1>
-                    <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10">
-                        {subtitle}
+                    <p className="text-xl md:text-2xl text-slate-300 mb-10 max-w-2xl mx-auto">
+                        La piattaforma libera per lo studio delle scienze
+                        economiche. Semplice, accessibile, e completa.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+
+                    <div className="max-w-xl mx-auto relative mb-12">
+                        <Input
+                            type="search"
+                            placeholder="Cerca un argomento..."
+                            className="h-14 pl-6 pr-12 rounded-full text-lg bg-white text-slate-900 border-none focus-visible:ring-2 focus-visible:ring-primary"
+                        />
                         <Button
-                            size="xl"
-                            className="h-12 px-8 text-lg shadow-lg hover:shadow-xl transition-all"
+                            size="icon"
+                            className="absolute right-2 top-2 h-10 w-10 rounded-full"
                         >
-                            Get Started Now{" "}
-                            <ArrowRight className="ml-2 w-5 h-5" />
-                        </Button>
-                        <Button
-                            variant="outline"
-                            size="xl"
-                            className="h-12 px-8 text-lg backdrop-blur-sm bg-background/50"
-                        >
-                            View Demo
+                            <Search className="h-5 w-5" />
                         </Button>
                     </div>
-                </div>
-            </section>
 
-            {/* Features Section */}
-            {features && features.length > 0 && (
-                <section className="py-24 bg-slate-50 relative">
-                    <div className="container mx-auto px-4 md:px-6">
-                        <div className="text-center mb-16">
-                            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                                Why Choose EconLearn?
-                            </h2>
-                            <p className="text-muted-foreground max-w-2xl mx-auto">
-                                Everything you need to master economics, from
-                                basic principles to advanced market analysis.
-                            </p>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                            {features.map((feature, index) => (
-                                <Card
-                                    key={index}
-                                    className="border-none shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white"
-                                >
-                                    <CardHeader>
-                                        <div className="mb-4 p-3 bg-primary/10 w-fit rounded-xl">
-                                            {getIcon(feature.title)}
-                                        </div>
-                                        <CardTitle className="text-xl mb-2">
-                                            {feature.title}
-                                        </CardTitle>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <CardDescription className="text-base leading-relaxed">
-                                            {feature.description}
-                                        </CardDescription>
-                                    </CardContent>
-                                </Card>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            )}
-
-            {/* Social Proof / Testimonials */}
-            <section className="py-24 bg-background">
-                <div className="container mx-auto px-4 md:px-6">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                            Trusted by Learners Worldwide
-                        </h2>
-                        <div className="flex justify-center gap-1 mb-4">
-                            {[1, 2, 3, 4, 5].map((_, i) => (
-                                <Star
-                                    key={i}
-                                    className="w-6 h-6 fill-yellow-400 text-yellow-400"
-                                />
-                            ))}
-                        </div>
-                        <p className="text-muted-foreground">
-                            4.9/5 Average Rating
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                        {[
-                            {
-                                name: "Alex Johnson",
-                                role: "Economics Student",
-                                content:
-                                    "The interactive charts made complex concepts so much easier to understand. Highly recommended!",
-                            },
-                            {
-                                name: "Sarah Williams",
-                                role: "Finance Professional",
-                                content:
-                                    "A fantastic resource for refreshing my knowledge. The real-world examples are spot on.",
-                            },
-                            {
-                                name: "Michael Chen",
-                                role: "High School Teacher",
-                                content:
-                                    "I use EconLearn in my classroom. The students love the gamified progress tracking.",
-                            },
-                        ].map((testimonial, i) => (
-                            <div
-                                key={i}
-                                className="p-8 rounded-2xl bg-slate-50 border border-slate-100"
+                    <div className="flex flex-col md:flex-row justify-center gap-4">
+                        <Button
+                            size="lg"
+                            className="bg-green-500 hover:bg-green-600 text-white text-lg px-8 py-6 rounded-full font-bold"
+                            asChild
+                        >
+                            <a href="/articles">Inizia a Studiare</a>
+                        </Button>
+                        {user && (
+                            <Button
+                                variant="outline"
+                                size="lg"
+                                className="bg-transparent text-white border-white hover:bg-white/10 text-lg px-8 py-6 rounded-full font-bold"
+                                asChild
                             >
-                                <p className="text-lg mb-6 italic text-muted-foreground">
-                                    "{testimonial.content}"
-                                </p>
-                                <div>
-                                    <p className="font-bold text-foreground">
-                                        {testimonial.name}
-                                    </p>
-                                    <p className="text-sm text-primary">
-                                        {testimonial.role}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
+                                <a href="/articles/create">Scrivi Lezione</a>
+                            </Button>
+                        )}
                     </div>
+                </div>
+
+                {/* Abstract Background Shapes */}
+                <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+                    <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
+                    <div className="absolute top-1/2 right-0 w-64 h-64 bg-green-500 rounded-full blur-3xl"></div>
                 </div>
             </section>
 
-            {/* Footer */}
-            <footer className="bg-slate-900 text-slate-300 py-12 border-t border-slate-800">
-                <div className="container mx-auto px-4 md:px-6">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                        <div className="col-span-1 md:col-span-2">
-                            <h3 className="text-2xl font-bold text-white mb-4">
-                                EconLearn
+            {/* Topics Grid */}
+            <section className="py-16 bg-slate-50 dark:bg-slate-950/50">
+                <div className="container mx-auto px-4">
+                    <h2 className="text-3xl font-bold text-center mb-12">
+                        Argomenti Principali
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {/* Topic 1 */}
+                        <div className="bg-background p-8 rounded-xl shadow-sm border hover:shadow-md transition-all group cursor-pointer text-center">
+                            <div className="bg-blue-100 dark:bg-blue-900/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                                <Book className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+                            </div>
+                            <h3 className="text-xl font-bold mb-2">
+                                Microeconomia
                             </h3>
-                            <p className="max-w-xs text-slate-400 mb-6">
-                                Empowering the next generation of economists
-                                with accessible, interactive education.
+                            <p className="text-muted-foreground mb-4">
+                                Domanda, offerta e mercati.
                             </p>
-                            <div className="flex gap-4">
-                                <a
-                                    href="#"
-                                    className="hover:text-white transition-colors"
-                                >
-                                    <Globe className="w-5 h-5" />
-                                </a>
-                                <a
-                                    href="#"
-                                    className="hover:text-white transition-colors"
-                                >
-                                    <Shield className="w-5 h-5" />
-                                </a>
+                            <Button
+                                variant="link"
+                                className="text-blue-600 dark:text-blue-400"
+                            >
+                                Vai al corso &rarr;
+                            </Button>
+                        </div>
+
+                        {/* Topic 2 */}
+                        <div className="bg-background p-8 rounded-xl shadow-sm border hover:shadow-md transition-all group cursor-pointer text-center">
+                            <div className="bg-green-100 dark:bg-green-900/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                                <TrendingUp className="w-8 h-8 text-green-600 dark:text-green-400" />
                             </div>
-                        </div>
-                        <div>
-                            <h4 className="font-semibold text-white mb-4">
-                                Platform
-                            </h4>
-                            <ul className="space-y-3">
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="hover:text-white transition-colors"
-                                    >
-                                        Courses
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="hover:text-white transition-colors"
-                                    >
-                                        Resources
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="hover:text-white transition-colors"
-                                    >
-                                        Pricing
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 className="font-semibold text-white mb-4">
-                                Company
-                            </h4>
-                            <ul className="space-y-3">
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="hover:text-white transition-colors"
-                                    >
-                                        About Us
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="hover:text-white transition-colors"
-                                    >
-                                        Careers
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="hover:text-white transition-colors"
-                                    >
-                                        Contact
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-                        <p>
-                            &copy; {new Date().getFullYear()} EconLearn. All
-                            rights reserved.
-                        </p>
-                        <div className="flex gap-8">
-                            <a
-                                href="#"
-                                className="hover:text-white transition-colors"
+                            <h3 className="text-xl font-bold mb-2">
+                                Macroeconomia
+                            </h3>
+                            <p className="text-muted-foreground mb-4">
+                                PIL, inflazione e crescita.
+                            </p>
+                            <Button
+                                variant="link"
+                                className="text-green-600 dark:text-green-400"
                             >
-                                Privacy Policy
-                            </a>
-                            <a
-                                href="#"
-                                className="hover:text-white transition-colors"
+                                Vai al corso &rarr;
+                            </Button>
+                        </div>
+
+                        {/* Topic 3 */}
+                        <div className="bg-background p-8 rounded-xl shadow-sm border hover:shadow-md transition-all group cursor-pointer text-center">
+                            <div className="bg-purple-100 dark:bg-purple-900/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                                <BarChart2 className="w-8 h-8 text-purple-600 dark:text-purple-400" />
+                            </div>
+                            <h3 className="text-xl font-bold mb-2">Finanza</h3>
+                            <p className="text-muted-foreground mb-4">
+                                Mercati finanziari e investimenti.
+                            </p>
+                            <Button
+                                variant="link"
+                                className="text-purple-600 dark:text-purple-400"
                             >
-                                Terms of Service
-                            </a>
+                                Vai al corso &rarr;
+                            </Button>
+                        </div>
+
+                        {/* Topic 4 */}
+                        <div className="bg-background p-8 rounded-xl shadow-sm border hover:shadow-md transition-all group cursor-pointer text-center">
+                            <div className="bg-orange-100 dark:bg-orange-900/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                                <Globe className="w-8 h-8 text-orange-600 dark:text-orange-400" />
+                            </div>
+                            <h3 className="text-xl font-bold mb-2">
+                                Economia Globale
+                            </h3>
+                            <p className="text-muted-foreground mb-4">
+                                Commercio internazionale e sviluppo.
+                            </p>
+                            <Button
+                                variant="link"
+                                className="text-orange-600 dark:text-orange-400"
+                            >
+                                Vai al corso &rarr;
+                            </Button>
                         </div>
                     </div>
                 </div>
-            </footer>
+            </section>
+
+            {/* Footerish Section */}
+            <section className="py-20 bg-background text-center">
+                <div className="container mx-auto px-4 max-w-3xl">
+                    <h2 className="text-3xl font-bold mb-6">
+                        Inizia il tuo percorso oggi
+                    </h2>
+                    <p className="text-muted-foreground text-lg mb-8">
+                        Unisciti a migliaia di studenti che stanno imparando
+                        l'economia in modo semplice e gratuito.
+                    </p>
+                    <Button size="lg" className="px-8" asChild>
+                        <a href="/register">Crea un Account Gratuito</a>
+                    </Button>
+                </div>
+            </section>
         </div>
     );
 }
