@@ -31,13 +31,14 @@ final class ArticleController extends AbstractController
     ): JsonResponse {
         $data = json_decode($request->getContent(), true);
 
-        if (empty($data['title']) || empty($data['content'])) {
-            return $this->json(['message' => 'Title and content are required'], Response::HTTP_BAD_REQUEST);
+        if (empty($data['title']) || empty($data['content']) || empty($data['section'])) {
+            return $this->json(['message' => 'Title, content and section are required'], Response::HTTP_BAD_REQUEST);
         }
 
         $article = new Article();
         $article->setTitle($data['title']);
         $article->setContent($data['content']);
+        $article->setSection($data['section']);
         $article->setCreatedAt(new \DateTimeImmutable());
         
         // Simple slug generation
@@ -67,6 +68,7 @@ final class ArticleController extends AbstractController
                 'id' => $article->getId(),
                 'title' => $article->getTitle(),
                 'slug' => $article->getSlug(),
+                'section' => $article->getSection(),
                 'content' => $article->getContent(), // Content will be truncated on frontend or here
                 'created_at' => $article->getCreatedAt()->format('Y-m-d'),
             ], $articles),

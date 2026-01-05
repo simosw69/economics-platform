@@ -14,8 +14,16 @@ import { useToast } from "@/hooks/use-toast";
 
 export default function CreateArticle({ user }) {
     const [title, setTitle] = useState("");
+    const [section, setSection] = useState("");
     const [content, setContent] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const sections = [
+        "Microeconomia",
+        "Macroeconomia",
+        "Finanza",
+        "Economia Globale",
+    ];
     // const { toast } = useToast(); // Assuming standard shadcn/ui toast usage if configured
 
     const handleSubmit = async (e) => {
@@ -28,7 +36,7 @@ export default function CreateArticle({ user }) {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ title, content }),
+                body: JSON.stringify({ title, section, content }),
             });
 
             const data = await response.json();
@@ -40,6 +48,7 @@ export default function CreateArticle({ user }) {
                 //});
                 alert("Lezione creata con successo!"); // Fallback if toast not active
                 setTitle("");
+                setSection("");
                 setContent("");
                 // Redirect can be handled here or just clear form
                 window.location.href = "/articles";
@@ -85,6 +94,31 @@ export default function CreateArticle({ user }) {
                                     required
                                     className="text-lg py-6"
                                 />
+                            </div>
+
+                            <div className="space-y-2">
+                                <label
+                                    htmlFor="section"
+                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                >
+                                    Sezione
+                                </label>
+                                <select
+                                    id="section"
+                                    className="flex h-12 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                                    value={section}
+                                    onChange={(e) => setSection(e.target.value)}
+                                    required
+                                >
+                                    <option value="" disabled>
+                                        Seleziona una sezione
+                                    </option>
+                                    {sections.map((s) => (
+                                        <option key={s} value={s}>
+                                            {s}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
                             <div className="space-y-2">
                                 <label

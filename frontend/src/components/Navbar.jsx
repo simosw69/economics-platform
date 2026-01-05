@@ -26,12 +26,6 @@ export default function Navbar({ user }) {
                         Home
                     </a>
                     <a
-                        href="/courses"
-                        className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                        Corsi
-                    </a>
-                    <a
                         href="/articles"
                         className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                     >
